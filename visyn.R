@@ -107,8 +107,8 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
                      limit = c(0, 1.1), 
                      breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
   scale_y_continuous(name = "Trial Number", 
-                     breaks = c(1:20)) +
-  labs(tag = "A") +
+                     breaks = c(1, 5, 10, 15, 20)) +
+  labs(tag = "A")+ 
   scale_color_manual(labels = c("Baseline", "Physical\nPractice Only", "Visyn &\nPhysical Practice"), 
                      values = c("black", "#3300CC", "#FFD700")) +
   theme_bw() + #sets the theme to plane
@@ -116,13 +116,13 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         axis.line = element_line(colour = "black")) +
-  theme(axis.title.y = element_text(vjust = 2, size = 20), 
-        axis.text = element_text(color = "black", size = 15), 
-        axis.title.x = element_text(color = "black", vjust = 0, size = 20),
+  theme(axis.title.y = element_text(vjust = 2, size = 30), 
+        axis.text = element_text(color = "black", size = 25), 
+        axis.title.x = element_text(color = "black", vjust = 0, size = 30),
         legend.title = element_blank()) +
   theme(legend.text = element_text(size = 20),
-      legend.position = "left",
-      legend.key.size = unit(2, "cm"),
+      legend.position = "bottom",
+      legend.key.size = unit(1.5, "cm"),
       legend.title = element_blank()))
 
 ## Velocity
@@ -133,22 +133,23 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
                      limit = c(20, 55), 
                      breaks = c(20, 25, 30, 35, 40, 45, 50, 55)) +
   scale_y_continuous(name = "Trial Number", 
-                     breaks = c(1:20)) +
+                     breaks = c(1, 5, 10, 15, 20)) +
     labs(tag = "A") +
   scale_fill_manual(values = c("black", "black", "black", "black", "black", "black")) +
-    scale_color_manual(labels = c("Baseline", "Physical Practice Only", "Visyn & Physical Practice"), 
+    scale_color_manual(labels = c("Baseline", "Physical\nPractice Only", "Visyn &\nPhysical Practice"), 
                        values = c("black", "#3300CC", "#FFD700")) +
     theme_bw() + #sets the theme to plane
   theme(panel.border = element_blank(), 
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         axis.line = element_line(colour = "black")) +
-  theme(axis.title.y = element_text(vjust = 2, size = 20), 
-        axis.text = element_text(color = "black", size = 15), 
-        axis.title.x = element_text(color = "black", vjust = 0, size = 20),
-        legend.title = element_blank()) +
-  theme(legend.text = element_text(size = 15),
+    theme(axis.title.y = element_text(vjust = 2, size = 30), 
+          axis.text = element_text(color = "black", size = 25), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 30),
+          legend.title = element_blank()) +
+    theme(legend.text = element_text(size = 20),
           legend.position = "bottom",
+          legend.key.size = unit(1.5, "cm"),
           legend.title = element_blank()))
     
 
@@ -160,23 +161,24 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
                      limit = c(0,60), 
                      breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60)) +
   scale_y_continuous(name = "Trial Number", 
-                     breaks = c(1:20)) +
+                     breaks = c(1, 5, 10, 15, 20)) +
     labs(tag = "A") +
   scale_shape_manual(values = c(15,0,16,1,17,2)) + 
   scale_fill_manual(values = c("black", "black", "black", "black", "black", "black")) +
-    scale_color_manual(labels = c("Baseline", "Physical Practice Only", "Visyn & Physical Practice"), 
+    scale_color_manual(labels = c("Baseline", "Physical\nPractice Only", "Visyn &\nPhysical Practice"), 
                        values = c("black", "#3300CC", "#FFD700")) +
     theme_bw() + #sets the theme to plane
   theme(panel.border = element_blank(), 
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         axis.line = element_line(colour = "black")) +
-  theme(axis.title.y = element_text(vjust = 2, size = 20), 
-          axis.text = element_text(color = "black", size = 15), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 20),
+    theme(axis.title.y = element_text(vjust = 2, size = 30), 
+          axis.text = element_text(color = "black", size = 25), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 30),
           legend.title = element_blank()) +
-  theme(legend.text = element_text(size = 15),
+    theme(legend.text = element_text(size = 20),
           legend.position = "bottom",
+          legend.key.size = unit(1.5, "cm"),
           legend.title = element_blank()))
 
 #######################################
@@ -199,10 +201,10 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         axis.line = element_line(colour = "black")) +
-  theme(axis.title.y = element_text(vjust = 2, size = 20),
-        axis.title.x = element_text(vjust = 0, size = 20),
-        axis.text = element_text(color = "black", size = 15)) +
-  theme(legend.text = element_text(size = 15),
+  theme(axis.title.y = element_text(vjust = 2, size = 30),
+        axis.title.x = element_text(vjust = 0, size = 30),
+        axis.text = element_text(color = "black", size = 25)) +
+  theme(legend.text = element_text(size = 25),
         legend.position = "none",
         legend.title = element_blank()))
 
@@ -222,10 +224,10 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         axis.line = element_line(colour = "black")) +
-    theme(axis.title.y = element_text(vjust = 2, size = 20),
-          axis.title.x = element_text(vjust = 0, size = 20),
-          axis.text = element_text(color = "black", size = 15)) +
-    theme(legend.text = element_text(size = 15),
+    theme(axis.title.y = element_text(vjust = 2, size = 30),
+          axis.title.x = element_text(vjust = 0, size = 30),
+          axis.text = element_text(color = "black", size = 25)) +
+    theme(legend.text = element_text(size = 25),
           legend.position = "none",
           legend.title = element_blank()))
 
@@ -243,10 +245,10 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         axis.line = element_line(colour = "black")) +
-    theme(axis.title.y = element_text(vjust = 2, size = 20),
-          axis.title.x = element_text(vjust = 0, size = 20),
-          axis.text = element_text(color = "black", size = 15)) +
-    theme(legend.text = element_text(size = 15),
+    theme(axis.title.y = element_text(vjust = 2, size = 30),
+          axis.title.x = element_text(vjust = 0, size = 30),
+          axis.text = element_text(color = "black", size = 25)) +
+    theme(legend.text = element_text(size = 25),
           legend.position = "none",
           legend.title = element_blank()))
 
@@ -258,32 +260,39 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
 ## Release Time (FIGURE 1)
 legend <- get_legend(g) #creates the variable legend with the plot legends
 g <- g + theme(legend.position = "none") #sets the plot back to having no legend
-figureone <- grid.arrange(g, j, m, legend, ncol = 3, nrow = 2, #creates the layout of figures
+figureone <- grid.arrange(g, j, m, legend, ncol = 2, nrow = 3, #creates the layout of figures
              layout_matrix = rbind(c(1,2), 
-                                   c(1, 3), 
-                                   c(NA, 4))), #creates the matrix. Each number corresponds to the number in the plot
-             widths = c(3,3, 5), heights = c(3, 3, 0.4))
+                                   c(1,3), 
+                                   c(4)), #creates the matrix. Each number corresponds to the number in the plot
+             widths = c(3,3), heights = c(3, 3, 0.7))
 
 
-fig <- ggarrange(g, 
-                 ggarrange(j, m, ncol = 2, labels = c("B", "C")), 
-                 nrow = 2,
-                 labels = "A")
+### Saved size: 1700 x 1200
 
+#legend <- get_legend(g) #creates the variable legend with the plot legends
+#g <- g + theme(legend.position = "none") #sets the plot back to having no legend
+#figureone <- grid.arrange(g, j, m, ncol = 2, nrow = 2, #creates the layout of figures
+#                          layout_matrix = rbind(c(1,2), 
+#                                                c(1, 3)), #creates the matrix. Each number corresponds to the number in the plot
+#                          widths = c(6,4), heights = c(3, 3))
 
 ## Velocity (FIGURE 3)
 legend <- get_legend(h) #creates the variable legend with the plot legends
 h <- h + theme(legend.position = "none") #sets the plot back to having no legend
-figurethree <- grid.arrange(h, k, n, legend, ncol = 3, nrow = 2, #creates the layout of figures
-                          layout_matrix = rbind(c(1,2,3), c(NA,4,NA)), #creates the matrix. Each number corresponds to the number in the plot
-                          widths = c(3,3,3), heights = c(3, 0.4))
+figurethree <- grid.arrange(h, k, n, legend, ncol = 2, nrow = 3, #creates the layout of figures
+                            layout_matrix = rbind(c(1,2), 
+                                                  c(1,3), 
+                                                  c(4)), #creates the matrix. Each number corresponds to the number in the plot
+                            widths = c(3,3), heights = c(3, 3, 0.7))
 
-## Velocity (FIGURE 3)
+## Accuracy (FIGURE 5)
 legend <- get_legend(i) #creates the variable legend with the plot legends
 i <- i + theme(legend.position = "none") #sets the plot back to having no legend
-figurefive <- grid.arrange(i, l, o, legend, ncol = 3, nrow = 2, #creates the layout of figures
-                            layout_matrix = rbind(c(1,2,3), c(NA,4,NA)), #creates the matrix. Each number corresponds to the number in the plot
-                            widths = c(3,3,3), heights = c(3, 0.4))
+figurefive <- grid.arrange(i, l, o, legend, ncol = 2, nrow = 3, #creates the layout of figures
+                           layout_matrix = rbind(c(1,2), 
+                                                 c(1,3), 
+                                                 c(4)), #creates the matrix. Each number corresponds to the number in the plot
+                           widths = c(3,3), heights = c(3, 3, 0.7))
 
 ########################################################################################
 ######## Tests for Outliers (BOXPLOTS) #################################################
@@ -305,19 +314,18 @@ is_outlier <- function(x) {
     scale_y_continuous(name = "Release Time (s)",
                        limits = (0:1.2),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4)) + 
- # scale_x_discrete(labels = c("Baseline", "Physical\nPractice\nOnly", "Visyn &\nPhysical\nPractice")) +
-  labs(x = "",
-       tags = "C") +
-  theme_bw() +
-  theme(panel.border = element_blank(), 
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(), 
-        axis.line = element_line(colour = "black")) +
-  theme(axis.title.y = element_text(vjust = 2, size = 20), 
-        axis.text.x = element_text(color = "white", vjust = 0, size = 15), #element_text(color = "black", size = 15),
-        axis.text.y = element_text(color = "black", size = 15),
-        axis.title.x = element_text(color = "white", vjust = 0, size = 20)))
-
+    scale_x_discrete(labels = c("Baseline\n  \n  ", "Physical\nPractice Only\n ", "Visyn &\nPhysical\nPractice")) +
+    labs(x = "",
+         tags = "C") +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black")) +
+    theme(axis.title.y = element_text(vjust = 2, size = 30), 
+          axis.text.x = element_text(color = "black", vjust = 0, size = 25), #element_text(color = "black", size = 15),
+          axis.text.y = element_text(color = "black", size = 25),
+          axis.title.x = element_text(color = "white", vjust = 0, size = 30)))
 
 ## Velocity
 
@@ -328,22 +336,21 @@ is_outlier <- function(x) {
   geom_boxplot(alpha = 0.8, 
                color = "black",
                fill = c("black", "#3300CC", "#FFD700")) + 
-  scale_y_continuous(name = "Velocity at Release (mph)",
+  scale_y_continuous(name = "Velocity at\nRelease (mph)",
                      limits = c(0, 55),
                      breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55)) + 
- # scale_x_discrete(labels = c("Baseline", "Physical\nPractice\nOnly", "Visyn &\nPhysical\nPractice")) +
-  labs(x = "",
-       tags = "C") +
+    scale_x_discrete(labels = c("Baseline\n  \n  ", "Physical\nPractice Only\n ", "Visyn &\nPhysical\nPractice")) +
+    labs(x = "",
+         tags = "C") +
     theme_bw() +
     theme(panel.border = element_blank(), 
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black")) +
-    theme(axis.title.y = element_text(vjust = 2, size = 20), 
-          axis.text.x = element_text(color = "white", vjust = 0, size = 15), #element_text(color = "black", size = 15),
-          axis.text.y = element_text(color = "black", size = 15),
-          axis.title.x = element_text(color = "white", vjust = 0, size = 20)))
-
+    theme(axis.title.y = element_text(vjust = 2, size = 30), 
+          axis.text.x = element_text(color = "black", vjust = 0, size = 25), #element_text(color = "black", size = 15),
+          axis.text.y = element_text(color = "black", size = 25),
+          axis.title.x = element_text(color = "white", vjust = 0, size = 30)))
 
 ## Accuracy
 
@@ -354,22 +361,21 @@ is_outlier <- function(x) {
   geom_boxplot(alpha = 0.8, 
                color = "black",
                fill = c("black", "#3300CC", "#FFD700")) + 
-  scale_y_continuous(name = "Distance from Target (inches)",
+  scale_y_continuous(name = "Distance from\nTarget (inches)",
                      limits = c(0, 45),
                      breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45)) + 
-#  scale_x_discrete(labels = c("Baseline", "Physical\nPractice\nOnly", "Visyn &\nPhysical\nPractice")) +
-  labs(x = "",
+    scale_x_discrete(labels = c("Baseline\n  \n  ", "Physical\nPractice Only\n ", "Visyn &\nPhysical\nPractice")) +
+    labs(x = "",
        tags = "C") +
   theme_bw() +
   theme(panel.border = element_blank(), 
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         axis.line = element_line(colour = "black")) +
-    theme(axis.title.y = element_text(vjust = 2, size = 20), 
-          axis.text.x = element_text(color = "white", vjust = 0, size = 15), #element_text(color = "black", size = 15),
-          axis.text.y = element_text(color = "black", size = 15),
-          axis.title.x = element_text(color = "white", vjust = 0, size = 20)))
-
+    theme(axis.title.y = element_text(vjust = 2, size = 30), 
+          axis.text.x = element_text(color = "black", vjust = 0, size = 25), #element_text(color = "black", size = 15),
+          axis.text.y = element_text(color = "black", size = 25),
+          axis.title.x = element_text(color = "white", vjust = 0, size = 30)))
 
 ########################################################################################
 ######## Group Data ####################################################################
