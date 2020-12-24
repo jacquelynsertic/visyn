@@ -337,8 +337,8 @@ is_outlier <- function(x) {
                color = "black",
                fill = c("black", "#3300CC", "#FFD700")) + 
   scale_y_continuous(name = "Velocity at\nRelease (mph)",
-                     limits = c(0, 55),
-                     breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55)) + 
+                     limits = c(20, 55),
+                     breaks = c(20, 25, 30, 35, 40, 45, 50, 55)) + 
     scale_x_discrete(labels = c("Baseline\n  \n  ", "Physical\nPractice Only\n ", "Visyn &\nPhysical\nPractice")) +
     labs(x = "",
          tags = "C") +
@@ -376,6 +376,248 @@ is_outlier <- function(x) {
           axis.text.x = element_text(color = "black", vjust = 0, size = 25), #element_text(color = "black", size = 15),
           axis.text.y = element_text(color = "black", size = 25),
           axis.title.x = element_text(color = "white", vjust = 0, size = 30)))
+
+
+########################################################################################
+######## Correlations ##################################################################
+########################################################################################
+###########
+## Baseline
+###########
+## Release Time & Velocity 
+
+fit <- 0.144
+rsq_label <- paste('R^2 == ', fit)
+
+(aa <- visyn %>% filter(condition == "Baseline") %>% 
+   ggplot(aes(movementTime, velocity)) +
+   geom_point(size = 3,
+              fill = "black",
+              color = "black") + #changes the size of the dots
+   geom_smooth(method=lm, se = FALSE, color = "black") +
+   scale_y_continuous(name = "Velocity at Baseline (mph)", #names y-axis
+                      limit = c(0,50),
+                      breaks = c(0, 10, 20, 30, 40, 50)) + 
+   scale_x_continuous(name = "Release Time at Baseline (s)",
+                      limit = c(0,1.0),
+                      breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
+   theme_bw() +
+   theme(panel.border = element_blank(), 
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank(), 
+         axis.line = element_line(colour = "black"))+
+   labs(tag = "A")+
+   annotate(geom="text",x=0.79,y=48,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+   theme(axis.title.y = element_text(vjust = 2, size = 14), 
+         axis.text = element_text(color = "black", size = 12), 
+         axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+## Release Time & Accuracy
+(bb <- visyn %>% filter(condition == "Baseline") %>% 
+    ggplot(aes(velocity, accuracy)) +
+    geom_point(size = 3,
+               fill = "black",
+               color = "black") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_x_continuous(name = "Velocity at Baseline (mph)", #names y-axis
+                       limit = c(0,50),
+                       breaks = c(0, 10, 20, 30, 40, 50)) + 
+    scale_y_continuous(name = "Distance from Target at Baseline (in)",
+                       limit = c(0, 40),
+                       breaks = c(0, 10, 20, 30, 40)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "B")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+## Velocity and Accuracy
+(cc <- visyn %>% filter(condition == "Baseline") %>% 
+    ggplot(aes(accuracy, movementTime)) +
+    geom_point(size = 3,
+               fill = "black",
+               color = "black") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_y_continuous(name = "Release Time at Baseline (s)",
+                       limit = c(0,1.0),
+                       breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
+    scale_x_continuous(name = "Distance from Target at Baseline (in)",
+                       limit = c(0, 40),
+                       breaks = c(0, 10, 20, 30, 40)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "C")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+###########
+## Physical Practice Only
+###########
+## Release Time & Velocity
+(dd <- visyn %>% filter(condition == "PO") %>% 
+    ggplot(aes(movementTime, velocity)) +
+    geom_point(size = 3,
+               fill = "#3300CC",
+               color = "#3300CC") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_y_continuous(name = "Velocity after\nPhysical Practice Only (mph)", #names y-axis
+                       limit = c(0,52),
+                       breaks = c(0, 10, 20, 30, 40, 50)) + 
+    scale_x_continuous(name = "Release Time after\nPhysical Practice Only (s)",
+                       limit = c(0,1.0),
+                       breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "D")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+## Accuracy and Velocity
+(ee <- visyn %>% filter(condition == "PO") %>% 
+    ggplot(aes(velocity, accuracy)) +
+    geom_point(size = 3,
+               fill = "#3300CC",
+               color = "#3300CC") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_x_continuous(name = "Velocity after\nPhysical Practice Only (mph)", #names y-axis
+                       limit = c(0,50),
+                       breaks = c(0, 10, 20, 30, 40, 50)) + 
+    scale_y_continuous(name = "Distance from Target\nafter Physical Practice Only (in)",
+                       limit = c(0, 40),
+                       breaks = c(0, 10, 20, 30, 40)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "E")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+## Accuracy & Movement Time
+(ff <- visyn %>% filter(condition == "PO") %>% 
+    ggplot(aes(accuracy, movementTime)) +
+    geom_point(size = 3,
+               fill = "#3300CC",
+               color = "#3300CC") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_y_continuous(name = "Release Time after\nPhysical Practice Only (s)",
+                       limit = c(0,1.0),
+                       breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
+    scale_x_continuous(name = "Distance from Target\nafter Physical Practice Only (in)",
+                       limit = c(0, 40),
+                       breaks = c(0, 10, 20, 30, 40)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "F")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+##########
+## Visyn & Physical Practice
+##########
+## Release Time & Velocity
+(gg <- visyn %>% filter(condition == "VP") %>% 
+    ggplot(aes(movementTime, velocity)) +
+    geom_point(size = 3,
+               fill = "#FFD700",
+               color = "#FFD700") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_y_continuous(name = "Velocity after\nVisyn & Physical Practice (mph)", #names y-axis
+                       limit = c(0,52),
+                       breaks = c(0, 10, 20, 30, 40, 50)) + 
+    scale_x_continuous(name = "Release Time after\nVisyn & Physical Practice (s)",
+                       limit = c(0,1.0),
+                       breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "G")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+## Accuracy and Velocity
+(hh <- visyn %>% filter(condition == "VP") %>% 
+    ggplot(aes(velocity, accuracy)) +
+    geom_point(size = 3,
+               fill = "#FFD700",
+               color = "#FFD700") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_x_continuous(name = "Velocity after\nVisyn & Physical Practice (mph)", #names y-axis
+                       limit = c(0,50),
+                       breaks = c(0, 10, 20, 30, 40, 50)) + 
+    scale_y_continuous(name = "Distance from Target after\nVisyn & Physical Practice (in)",
+                       limit = c(0, 40),
+                       breaks = c(0, 10, 20, 30, 40)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "H")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+## Release Time & Accuracy
+(ii <- visyn %>% filter(condition == "VP") %>% 
+    ggplot(aes(accuracy, movementTime)) +
+    geom_point(size = 3,
+               fill = "#FFD700",
+               color = "#FFD700") + #changes the size of the dots
+    geom_smooth(method=lm, se = FALSE, color = "black") +
+    scale_y_continuous(name = "Release Time after\nVisyn & Physical Practice (s)",
+                       limit = c(0,1.0),
+                       breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
+    scale_x_continuous(name = "Distance from Target\nafter Visyn & Physical Practice (in)",
+                       limit = c(0, 40),
+                       breaks = c(0, 10, 20, 30, 40)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "I")+
+    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+
+
+###### Combining Correlation Plots #######
+
+grid.arrange(aa, bb, cc, ncol = 3, widths =c(3.5, 3.5, 3.5)) #baseline
+grid.arrange(dd, ee, ff, ncol = 3, widths =c(3.5, 3.5, 3.5)) #PO
+grid.arrange(gg, hh, ii, ncol = 3, widths =c(3.5, 3.5, 3.5)) #VP
+
+
 
 ########################################################################################
 ######## Group Data ####################################################################
