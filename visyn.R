@@ -129,7 +129,7 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
 (h <- visyn %>% ggplot(aes(velocity, trial, group = condition)) + 
   geom_point(size = 5, shape = 16,
              aes(color = condition)) +
-  scale_x_continuous(name = "Velocity at Release (mph)", 
+  scale_x_continuous(name = "Velocity (mph)", 
                      limit = c(20, 55), 
                      breaks = c(20, 25, 30, 35, 40, 45, 50, 55)) +
   scale_y_continuous(name = "Trial Number", 
@@ -157,7 +157,7 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
 (i <- visyn %>% ggplot(aes(accuracy, trial, group = condition)) + 
   geom_point(size = 5, shape = 16,
              aes(color = condition)) +
-  scale_x_continuous(name = "Distance from Target (inches)", 
+  scale_x_continuous(name = "Accuracy (inches)", 
                      limit = c(0,60), 
                      breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60)) +
   scale_y_continuous(name = "Trial Number", 
@@ -215,7 +215,7 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
     alpha = 0.5) + 
   labs(y = "Density",
        tag = "B") +
-  scale_x_continuous(name = "Velocity at Release (mph)",
+  scale_x_continuous(name = "Velocity (mph)",
                      limit = c(19, 56)) +
   scale_fill_manual(labels = c("Baseline", "Physical practice only", "Visyn & Physical practice"), 
                                values = c("black", "#3300CC", "#FFD700")) +
@@ -236,7 +236,7 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
   geom_density(alpha = 0.5) + 
   labs(y = "Density",
        tag = "B") +
-  scale_x_continuous(name = "Distance from Target (inches)",
+  scale_x_continuous(name = "Accuracy (inches)",
                      limit = c(-15, 70)) +
   scale_fill_manual(labels = c("Baseline", "Physical practice only", "Visyn & Physical practice"), 
                     values = c("black", "#3300CC", "#FFD700")) +
@@ -336,7 +336,7 @@ is_outlier <- function(x) {
   geom_boxplot(alpha = 0.8, 
                color = "black",
                fill = c("black", "#3300CC", "#FFD700")) + 
-  scale_y_continuous(name = "Velocity at\nRelease (mph)",
+  scale_y_continuous(name = "Velocity (mph)",
                      limits = c(20, 55),
                      breaks = c(20, 25, 30, 35, 40, 45, 50, 55)) + 
     scale_x_discrete(labels = c("Baseline\n  \n  ", "Physical\nPractice Only\n ", "Visyn &\nPhysical\nPractice")) +
@@ -361,7 +361,7 @@ is_outlier <- function(x) {
   geom_boxplot(alpha = 0.8, 
                color = "black",
                fill = c("black", "#3300CC", "#FFD700")) + 
-  scale_y_continuous(name = "Distance from\nTarget (inches)",
+  scale_y_continuous(name = "Accuracy (inches)",
                      limits = c(0, 45),
                      breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45)) + 
     scale_x_discrete(labels = c("Baseline\n  \n  ", "Physical\nPractice Only\n ", "Visyn &\nPhysical\nPractice")) +
@@ -408,9 +408,9 @@ rsq_label <- paste('R^2 == ', fit)
          axis.line = element_line(colour = "black"))+
    labs(tag = "A")+
    annotate(geom="text",x=0.79,y=48,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-   theme(axis.title.y = element_text(vjust = 2, size = 14), 
-         axis.text = element_text(color = "black", size = 12), 
-         axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ## Release Time & Accuracy
 (bb <- visyn %>% filter(condition == "Baseline") %>% 
@@ -422,7 +422,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_x_continuous(name = "Velocity at Baseline (mph)", #names y-axis
                        limit = c(0,50),
                        breaks = c(0, 10, 20, 30, 40, 50)) + 
-    scale_y_continuous(name = "Distance from Target at Baseline (in)",
+    scale_y_continuous(name = "Accuracy at Baseline (in)",
                        limit = c(0, 40),
                        breaks = c(0, 10, 20, 30, 40)) +
     theme_bw() +
@@ -432,9 +432,9 @@ rsq_label <- paste('R^2 == ', fit)
           axis.line = element_line(colour = "black"))+
     labs(tag = "B")+
     #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ## Velocity and Accuracy
 (cc <- visyn %>% filter(condition == "Baseline") %>% 
@@ -446,7 +446,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_y_continuous(name = "Release Time at Baseline (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
-    scale_x_continuous(name = "Distance from Target at Baseline (in)",
+    scale_x_continuous(name = "Accuracy at Baseline (in)",
                        limit = c(0, 40),
                        breaks = c(0, 10, 20, 30, 40)) +
     theme_bw() +
@@ -456,14 +456,18 @@ rsq_label <- paste('R^2 == ', fit)
           axis.line = element_line(colour = "black"))+
     labs(tag = "C")+
     #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ###########
 ## Physical Practice Only
 ###########
 ## Release Time & Velocity
+
+fit <- 0.421
+rsq_label <- paste('R^2 == ', fit)
+
 (dd <- visyn %>% filter(condition == "PO") %>% 
     ggplot(aes(movementTime, velocity)) +
     geom_point(size = 3,
@@ -481,13 +485,16 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
-    labs(tag = "D")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+    labs(tag = "A")+
+    annotate(geom="text",x=.77,y=48,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ## Accuracy and Velocity
+fit <- 0.082
+rsq_label <- paste('R^2 == ', fit)
+
 (ee <- visyn %>% filter(condition == "PO") %>% 
     ggplot(aes(velocity, accuracy)) +
     geom_point(size = 3,
@@ -497,7 +504,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_x_continuous(name = "Velocity after\nPhysical Practice Only (mph)", #names y-axis
                        limit = c(0,50),
                        breaks = c(0, 10, 20, 30, 40, 50)) + 
-    scale_y_continuous(name = "Distance from Target\nafter Physical Practice Only (in)",
+    scale_y_continuous(name = "Accuracy after\nPhysical Practice Only (in)",
                        limit = c(0, 40),
                        breaks = c(0, 10, 20, 30, 40)) +
     theme_bw() +
@@ -505,11 +512,11 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
-    labs(tag = "E")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+    labs(tag = "B")+
+    annotate(geom="text",x=19,y=18,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ## Accuracy & Movement Time
 (ff <- visyn %>% filter(condition == "PO") %>% 
@@ -521,7 +528,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_y_continuous(name = "Release Time after\nPhysical Practice Only (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
-    scale_x_continuous(name = "Distance from Target\nafter Physical Practice Only (in)",
+    scale_x_continuous(name = "Accuracy after\nPhysical Practice Only (in)",
                        limit = c(0, 40),
                        breaks = c(0, 10, 20, 30, 40)) +
     theme_bw() +
@@ -529,11 +536,11 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
-    labs(tag = "F")+
+    labs(tag = "C")+
     #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ##########
 ## Visyn & Physical Practice
@@ -556,11 +563,11 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
-    labs(tag = "G")+
+    labs(tag = "A")+
     #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
-          axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+   theme(axis.title.y = element_text(vjust = 2, size = 18), 
+         axis.text = element_text(color = "black", size = 12), 
+         axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ## Accuracy and Velocity
 (hh <- visyn %>% filter(condition == "VP") %>% 
@@ -572,7 +579,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_x_continuous(name = "Velocity after\nVisyn & Physical Practice (mph)", #names y-axis
                        limit = c(0,50),
                        breaks = c(0, 10, 20, 30, 40, 50)) + 
-    scale_y_continuous(name = "Distance from Target after\nVisyn & Physical Practice (in)",
+    scale_y_continuous(name = "Accuracy after\nVisyn & Physical Practice (in)",
                        limit = c(0, 40),
                        breaks = c(0, 10, 20, 30, 40)) +
     theme_bw() +
@@ -580,11 +587,11 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
-    labs(tag = "H")+
+    labs(tag = "B")+
     #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 ## Release Time & Accuracy
 (ii <- visyn %>% filter(condition == "VP") %>% 
@@ -596,7 +603,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_y_continuous(name = "Release Time after\nVisyn & Physical Practice (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
-    scale_x_continuous(name = "Distance from Target\nafter Visyn & Physical Practice (in)",
+    scale_x_continuous(name = "Accuracy after\nVisyn & Physical Practice (in)",
                        limit = c(0, 40),
                        breaks = c(0, 10, 20, 30, 40)) +
     theme_bw() +
@@ -604,11 +611,11 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
-    labs(tag = "I")+
+    labs(tag = "C")+
     #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-    theme(axis.title.y = element_text(vjust = 2, size = 14), 
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
-          axis.title.x = element_text(color = "black", vjust = 0, size = 14)))
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
 
 ###### Combining Correlation Plots #######
@@ -616,8 +623,6 @@ rsq_label <- paste('R^2 == ', fit)
 grid.arrange(aa, bb, cc, ncol = 3, widths =c(3.5, 3.5, 3.5)) #baseline
 grid.arrange(dd, ee, ff, ncol = 3, widths =c(3.5, 3.5, 3.5)) #PO
 grid.arrange(gg, hh, ii, ncol = 3, widths =c(3.5, 3.5, 3.5)) #VP
-
-
 
 ########################################################################################
 ######## Group Data ####################################################################
