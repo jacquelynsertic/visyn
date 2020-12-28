@@ -15,14 +15,13 @@ library("ggpubr")
 #load the data into R from excel
 visyn <- read_excel('C:\\Users\\jacqu\\Documents\\minnesota\\stats\\Visyn\\Visyn MVP App Testing Data-C-Clean_Konczak edited.xlsx', sheet = 'Data') #load excel sheet into R
 
-#### Scatterplots to compare individual data
-
 #(p <- filter(visyn, condition == "Baseline"))
 
 ########################################################################################
 ######## Individual Data ###############################################################
 ########################################################################################
 
+#### Scatterplots to compare individual data
 ### Overall Data
 ### condition as color; subject as shape
 
@@ -69,7 +68,6 @@ visyn %>% ggplot(aes(velocity, trial, group = condition)) +
         axis.text = element_text(color = "black", size = 12), 
         axis.title.x = element_text(color = "black", vjust = 0, size = 15),
         legend.title = element_blank())
-
 
 ## Accuracy
 visyn %>% ggplot(aes(accuracy, trial, group = condition)) + 
@@ -152,7 +150,6 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
           legend.key.size = unit(1.5, "cm"),
           legend.title = element_blank()))
     
-
 ## Accuracy
 (i <- visyn %>% ggplot(aes(accuracy, trial, group = condition)) + 
   geom_point(size = 5, shape = 16,
@@ -187,9 +184,7 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
 
 ## Release Time
 (j <- visyn %>% ggplot(aes(movementTime, group = condition, fill = condition)) + 
-  geom_density(#color = "condition",
-               #fill = "#800000",
-               alpha = 0.5) + 
+  geom_density(alpha = 0.5) + 
   labs(y = "Density",
        tag = "B") +
   scale_x_continuous(name = "Release Time (s)",
@@ -210,9 +205,7 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
 
 ## Velocity
 (k <- visyn %>% ggplot(aes(velocity, group = condition, fill = condition)) + 
-  geom_density(#color = "condition",
-    #fill = "#800000",
-    alpha = 0.5) + 
+  geom_density(alpha = 0.5) + 
   labs(y = "Density",
        tag = "B") +
   scale_x_continuous(name = "Velocity (mph)",
@@ -252,7 +245,6 @@ visyn %>% ggplot(aes(accuracy, trial, group = condition)) +
           legend.position = "none",
           legend.title = element_blank()))
 
-
 ########################################################################################
 ######## Combining Plots ###############################################################
 ########################################################################################
@@ -265,7 +257,6 @@ figureone <- grid.arrange(g, j, m, legend, ncol = 2, nrow = 3, #creates the layo
                                    c(1,3), 
                                    c(4)), #creates the matrix. Each number corresponds to the number in the plot
              widths = c(3,3), heights = c(3, 3, 0.7))
-
 
 ### Saved size: 1700 x 1200
 
@@ -303,7 +294,6 @@ is_outlier <- function(x) {
 } #adds the outliers
 
 ## Release Time
-
 (m <- visyn %>%
   filter(!is.na(movementTime)) %>% #filters out NANs
   mutate(outlier = ifelse(is_outlier(movementTime), movementTime, as.numeric(NA))) %>% #sets outliers
@@ -328,7 +318,6 @@ is_outlier <- function(x) {
           axis.title.x = element_text(color = "white", vjust = 0, size = 30)))
 
 ## Velocity
-
 (n <- visyn %>%
   filter(!is.na(velocity)) %>% #filters out NANs
   mutate(outlier = ifelse(is_outlier(velocity), velocity, as.numeric(NA))) %>% #sets outliers
@@ -353,7 +342,6 @@ is_outlier <- function(x) {
           axis.title.x = element_text(color = "white", vjust = 0, size = 30)))
 
 ## Accuracy
-
 (o <- visyn %>%
   filter(!is.na(accuracy)) %>% #filters out NANs
   mutate(outlier = ifelse(is_outlier(accuracy), accuracy, as.numeric(NA))) %>% #sets outliers
@@ -431,7 +419,6 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
     labs(tag = "B")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
     theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
           axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
@@ -455,7 +442,6 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
     labs(tag = "C")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
     theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
           axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
@@ -537,7 +523,6 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
     labs(tag = "C")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
     theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
           axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
@@ -564,8 +549,7 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
     labs(tag = "A")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
-   theme(axis.title.y = element_text(vjust = 2, size = 18), 
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
          axis.text = element_text(color = "black", size = 12), 
          axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
 
@@ -588,7 +572,6 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
     labs(tag = "B")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
     theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
           axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
@@ -612,11 +595,9 @@ rsq_label <- paste('R^2 == ', fit)
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"))+
     labs(tag = "C")+
-    #  annotate(geom="text",x=3,y=53,label= rsq_label, hjust = 0, vjust = 1, parse = TRUE) +
     theme(axis.title.y = element_text(vjust = 2, size = 18), 
           axis.text = element_text(color = "black", size = 12), 
           axis.title.x = element_text(color = "black", vjust = 0, size = 18)))
-
 
 ###### Combining Correlation Plots #######
 
@@ -627,7 +608,6 @@ grid.arrange(gg, hh, ii, ncol = 3, widths =c(3.5, 3.5, 3.5)) #VP
 ########################################################################################
 ######## Group Data ####################################################################
 ########################################################################################
-
 #################
 ### Boxplots ####
 #################
@@ -638,9 +618,7 @@ is_outlier <- function(x) {
   return(x < quantile(x, 0.25) - 1.5 * IQR(x) | x > quantile(x, 0.75) + 1.5 * IQR(x))
 } #adds the outliers
 
-
 ## Reaction Time
-
 (a <- stack %>%
   filter(!is.na(movementTime)) %>% #filters out NANs
   mutate(outlier = ifelse(is_outlier(movementTime), movementTime, as.numeric(NA))) %>% #sets outliers
@@ -665,7 +643,6 @@ is_outlier <- function(x) {
           axis.title.x = element_text(color = "black", vjust = 0, size = 15)))
 
 ## Velocity
-
 (b <- stack %>%
     filter(!is.na(velocity)) %>% #filters out NANs
     mutate(outlier = ifelse(is_outlier(velocity), velocity, as.numeric(NA))) %>% #sets outliers
@@ -690,7 +667,6 @@ is_outlier <- function(x) {
           axis.title.x = element_text(color = "black", vjust = 0, size = 15)))
 
 ## Accuracy
-
 (c <- stack %>%
     filter(!is.na(accuracy)) %>% #filters out NANs
     mutate(outlier = ifelse(is_outlier(accuracy), accuracy, as.numeric(NA))) %>% #sets outliers
@@ -716,7 +692,6 @@ is_outlier <- function(x) {
 
 grid.arrange(a, b, c, ncol = 3, nrow = 1, #creates the layout of figures
              widths = c(3,3,3), heights = c(3))
-
 
 ##################
 ### Normality ####
