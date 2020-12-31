@@ -832,7 +832,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_y_continuous(name = "Velocity at Baseline (mph)", #names y-axis
                        limit = c(0,50),
                        breaks = c(0, 10, 20, 30, 40, 50)) + 
-    scale_x_continuous(name = "Release Time at Baseline (s)",
+    scale_x_continuous(name = "Movement Time at Baseline (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
     theme_bw() +
@@ -876,7 +876,7 @@ rsq_label <- paste('R^2 == ', fit)
                fill = "black",
                color = "black") + #changes the size of the dots
     geom_smooth(method=lm, se = FALSE, color = "black") +
-    scale_y_continuous(name = "Release Time at Baseline (s)",
+    scale_y_continuous(name = "Movement Time at Baseline (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
     scale_x_continuous(name = "Accuracy at Baseline (in)",
@@ -909,7 +909,7 @@ rsq_label <- paste('R^2 == ', fit)
     scale_y_continuous(name = "Velocity after\nPhysical Practice Only (mph)", #names y-axis
                        limit = c(0,52),
                        breaks = c(0, 10, 20, 30, 40, 50)) + 
-    scale_x_continuous(name = "Release Time after\nPhysical Practice Only (s)",
+    scale_x_continuous(name = "Movement Time after\nPhysical Practice Only (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
     theme_bw() +
@@ -957,7 +957,7 @@ rsq_label <- paste('R^2 == ', fit)
                fill = "#3300CC",
                color = "#3300CC") + #changes the size of the dots
     geom_smooth(method=lm, se = FALSE, color = "black") +
-    scale_y_continuous(name = "Release Time after\nPhysical Practice Only (s)",
+    scale_y_continuous(name = "Movement Time after\nPhysical Practice Only (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
     scale_x_continuous(name = "Accuracy after\nPhysical Practice Only (in)",
@@ -986,7 +986,7 @@ rsq_label <- paste('R^2 == ', fit)
    scale_y_continuous(name = "Velocity after\nVisyn & Physical Practice (mph)", #names y-axis
                       limit = c(0,52),
                       breaks = c(0, 10, 20, 30, 40, 50)) + 
-   scale_x_continuous(name = "Release Time after\nVisyn & Physical Practice (s)",
+   scale_x_continuous(name = "Movement Time after\nVisyn & Physical Practice (s)",
                       limit = c(0,1.0),
                       breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
    theme_bw() +
@@ -1029,7 +1029,7 @@ rsq_label <- paste('R^2 == ', fit)
                fill = "#FFD700",
                color = "#FFD700") + #changes the size of the dots
     geom_smooth(method=lm, se = FALSE, color = "black") +
-    scale_y_continuous(name = "Release Time after\nVisyn & Physical Practice (s)",
+    scale_y_continuous(name = "Movement Time after\nVisyn & Physical Practice (s)",
                        limit = c(0,1.0),
                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) + 
     scale_x_continuous(name = "Accuracy after\nVisyn & Physical Practice (in)",
