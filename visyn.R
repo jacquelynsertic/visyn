@@ -1229,3 +1229,115 @@ f <- f + theme(legend.position = "none") #sets the plot back to having no legend
 grid.arrange(d, e, f, legend, ncol = 3, nrow = 2, #creates the layout of figures
              layout_matrix = rbind(c(1,2,3), c(NA,4,NA)), #creates the matrix. Each number corresponds to the number in the plot
              widths = c(3,3,3), heights = c(3, 0.4))
+
+########################################################################################
+######## Within Subject Variability  ###################################################
+########################################################################################
+
+##Velocity
+(VELO <- visyn %>% ggplot(aes(x = condition, y = velocity, color = subject)) + 
+   stat_boxplot(geom = "errorbar", width = 0.3, size = 1) +
+   stat_summary(fun.x = median, #creates a mean value for each group
+                aes(group = subject), 
+                geom = "point", size = 2, #changes mean dot size,
+                position = position_dodge(width = 0.3), #moves the median dot away from the midline
+                stroke = 2) +  #stroke controls the boarder thickness
+   stat_summary(fun.x = median, 
+                geom = "line", size = 1, 
+                aes(group = subject), 
+                position = position_dodge(width = 0.3)) +
+   scale_color_manual(name = "Group",
+                      values = c("#00AFBB", "#E7B800", "#00AFBB", "#00AFBB", "#E7B800", "#00AFBB")) +
+   scale_y_continuous(name = "Velocity (mph)",
+                      limits = c(30, 50),
+                      breaks = c(30, 40, 50)) + 
+   scale_shape_manual(values = c(16,17)) +
+   scale_x_discrete(labels = c("Baseline\n \n", "Physical\nPractice\nOnly", "Visyn &\nPhysical\nPractice")) +
+   labs(tag = "A") +
+   theme_bw() +
+   theme(panel.border = element_blank(), 
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank(), 
+         axis.line = element_line(colour = "black")) +
+   theme(axis.title.y = element_text(vjust = 2, size = 20), 
+         axis.text.x = element_text(color = "black", vjust = 0, size = 15), #element_text(color = "black", size = 15),
+         axis.text.y = element_text(color = "black", size = 15),
+         axis.title.x = element_text(color = "white", vjust = 0, size = 20)) + 
+   theme(legend.title = element_blank()) + 
+   guides(color = guide_legend(override.aes = list(size = 1.3))) +
+   theme(legend.text = element_text(size = 15),
+         legend.position = "none",
+         legend.key.size = unit(1.5, "cm"),
+         legend.title = element_blank())) 
+
+(ACC <- visyn %>% ggplot(aes(x = condition, y = accuracy, color = subject)) + 
+    stat_boxplot(geom = "errorbar", width = 0.3, size = 1) +
+    stat_summary(fun.x = median, #creates a mean value for each group
+                 aes(group = subject), 
+                 geom = "point", size = 2, #changes mean dot size,
+                 position = position_dodge(width = 0.3), #moves the median dot away from the midline
+                 stroke = 2) +  #stroke controls the boarder thickness
+    stat_summary(fun.x = median, 
+                 geom = "line", size = 1, 
+                 aes(group = subject), 
+                 position = position_dodge(width = 0.3)) +
+    scale_color_manual(name = "Group",
+                       values = c("#00AFBB", "#E7B800", "#00AFBB", "#00AFBB", "#E7B800", "#00AFBB")) +
+    scale_y_continuous(name = "Accuracy (inches)",
+                       limits = c(0, 45),
+                       breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45)) + 
+    scale_shape_manual(values = c(16,17)) +
+    scale_x_discrete(labels = c("Baseline\n \n", "Physical\nPractice\nOnly", "Visyn &\nPhysical\nPractice")) +
+    labs(tag = "B") +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black")) +
+    theme(axis.title.y = element_text(vjust = 2, size = 20), 
+          axis.text.x = element_text(color = "black", vjust = 0, size = 15), #element_text(color = "black", size = 15),
+          axis.text.y = element_text(color = "black", size = 15),
+          axis.title.x = element_text(color = "white", vjust = 0, size = 20)) + 
+    theme(legend.title = element_blank()) + 
+    guides(color = guide_legend(override.aes = list(size = 1.3))) +
+    theme(legend.text = element_text(size = 15),
+          legend.position = "none",
+          legend.key.size = unit(1.5, "cm"),
+          legend.title = element_text(size = 18)))
+
+(aa <- visyn %>% filter(condition == "Baseline") %>% 
+    ggplot(aes(movementTime, velocity)) +
+    geom_point(aes(color = group), 
+               size = 3) + #changes the size of the dots
+    geom_smooth(aes(group = group, color = group), 
+                method=lm, 
+                se = FALSE) +
+    scale_color_manual(labels = c("Group 1", "Group 2"),
+                       values = c("#00AFBB", "#E7B800")) +
+    scale_y_continuous(name = "Velocity at Baseline (mph)", #names y-axis
+                       limit = c(0,50),
+                       breaks = c(0, 10, 20, 30, 40, 50)) + 
+    scale_x_continuous(name = "Movement Time at Baseline (s)",
+                       limit = c(0,1.0),
+                       breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+    labs(tag = "A")+
+    theme(axis.title.y = element_text(vjust = 2, size = 18), 
+          axis.text = element_text(color = "black", size = 12), 
+          axis.title.x = element_text(color = "black", vjust = 0, size = 18)) +
+    theme(legend.title = element_blank()) + 
+    theme(legend.text = element_text(size = 18),
+          legend.position = "right",
+          legend.key.size = unit(1.5, "cm"),
+          legend.title = element_blank()))
+
+legend <- get_legend(aa) #creates the variable legend with the plot legends
+aa <- aa + theme(legend.position = "none") #sets the plot back to having no legend
+figureone <- grid.arrange(VELO, ACC, legend, ncol = 3, nrow = 1, #creates the layout of figures
+                          layout_matrix = rbind(c(1,2, 3)), #creates the matrix. Each number corresponds to the number in the plot
+                          widths = c(3,3, 0.9), heights = c(3))
+
